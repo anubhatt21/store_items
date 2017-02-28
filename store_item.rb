@@ -32,17 +32,21 @@ puts "The " + fruit3[0] + " is "  + fruit3[1] + " and costs " + fruit1[2].to_s
 
 puts 
 
+puts "Using class"
+
+puts
+
 class Items
   attr_reader :name, :color
   attr_writer :price
 
-  def initialize(name, color, price)
-    @name = name
-    @color = color
-    @price = price
+  def initialize(input_options)
+    @name = input_options[:name]
+    @color = input_options[:color] 
+    @price = input_options[:price]
     
     def control_pricing
-    @price = 2 + @price
+      @price = 2 + @price
     end
   
   end 
@@ -59,14 +63,18 @@ class Items
     @price
   end
 
+  def print_info
+    puts "The #{@name} is #{@color} and costs #{@price}"
+  end
   
 end
 
-fruit1 = Items.new("apple", "red", 1)
-fruit2 = Items.new("mandarin", "orange", 2)
-fruit3 = Items.new("banana", "yellow", 3)
-puts fruit1.name
-puts fruit1.color
-puts fruit1.price
-fruit1.control_pricing
+fruit1 = Items.new({name: "apple", color: "red", price: 1})
+fruit2 = Items.new({name: "mandarin", color: "orange", price: 2})
+fruit3 = Items.new({name: "banana", color: "yellow", price: 3})
+ 
+fruit1.print_info
+fruit2.print_info
+fruit3.print_info
+
 
